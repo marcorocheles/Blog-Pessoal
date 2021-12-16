@@ -50,13 +50,20 @@ public class TemaController {
 	
 	@PutMapping
 	public ResponseEntity<Tema> put (@RequestBody Tema tema){
-		return ResponseEntity.ok(temaRepository.save(tema));
+		return temaRepository.findById(tema.getId())
+			.map(resp -> ResponseEntity.status(HttpStatus.OK).body(temaRepository.save(tema)))
+			.orElse(ResponseEntity.status(HttpStatus.BAD_REQUEST).build());
 	}
 	
 	//nome dos itens com @ é anotação
 	@DeleteMapping("/{id}")
-	public void delete(@PathVariable long id) {
-		temaRepository.deleteById(id);
+	public ResponseEntity<?> deleteTema(@PathVariable long id) {
+		return temaRepository.findById(id)
+			.map(resposta -> {
+				temaRepository.deleteById(id);
+				return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+			})
+			.orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
 	}
 	
 }

@@ -2,15 +2,23 @@ package org.generation.blog.model;
 
 public class UserLogin {
 	
-	private int id;
-	
+	private long id;
+
 	private String nome;
-	
+
 	private String usuario;
-	
+
 	private String senha;
-	
+
 	private String token;
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
 
 	public String getNome() {
 		return nome;
@@ -44,13 +52,6 @@ public class UserLogin {
 		this.token = token;
 	}
 
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
 	
 	
 }

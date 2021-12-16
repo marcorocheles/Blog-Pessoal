@@ -17,4 +17,5 @@ public interface PostagemRepository extends JpaRepository<Postagem, Long> {
 	 * Case = lowerCase ou UpperCase e não CASO
 	 */
 	public List<Postagem> findAllByTituloContainingIgnoreCase (String titulo);
+	
 }

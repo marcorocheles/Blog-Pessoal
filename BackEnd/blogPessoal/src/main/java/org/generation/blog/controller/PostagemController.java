@@ -49,7 +49,8 @@ public class PostagemController {
 	    	logo após um .map faz esse trabalho e criaremos um "if else" onde se estiver populado retornaremos e se nao dará not found
 	    	*/
 	        return postagemRepository.findById(id)
-	        .map(resp -> ResponseEntity.ok(resp)).orElse(ResponseEntity.notFound().build());
+	        		.map(resp -> ResponseEntity.ok(resp))
+	        		.orElse(ResponseEntity.notFound().build());
 	    }
 
 	    /*
@@ -72,7 +73,9 @@ public class PostagemController {
 	    
 		@PutMapping
 		public ResponseEntity<Postagem> put (@RequestBody Postagem postagem){
-			return ResponseEntity.status(HttpStatus.OK).body(postagemRepository.save(postagem));
+			return postagemRepository.findById(postagem.getId())
+					.map(resp -> ResponseEntity.status(HttpStatus.OK).body(postagemRepository.save(postagem)))
+					.orElse(ResponseEntity.status(HttpStatus.BAD_REQUEST).build());
 		}
 		
 		@DeleteMapping("/{id}")
@@ -80,7 +83,8 @@ public class PostagemController {
 			return postagemRepository.findById(id).map(resposta -> {
 				postagemRepository.deleteById(id);
 				return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-			}).orElse(ResponseEntity.notFound().build());
+			})
+			.orElse(ResponseEntity.notFound().build());
 		}
 		
 }
