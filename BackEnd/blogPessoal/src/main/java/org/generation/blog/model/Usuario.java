@@ -10,50 +10,57 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-@Table(name = "tb_usuario")
+@Table(name = "tb_usuarios")
 public class Usuario {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	
-	@NotNull(message = "O campo nome é obrigatório!")
-	@Size (min = 2, max = 100, message = "O campo nome deve conter entre 2 a 100 caracteres.")
+
+	@NotNull(message = "O atributo Nome é Obrigatório!")
 	private String nome;
-	
-	@NotNull (message = "O campo usuario é obrigatório!")
-	@Email (message = "O atributo usuario deve conter um email válido.")
-	@Size (min = 8, max = 100, message = "O campo usuario deve conter entre 8 a 50 caracteres.")
+
+	@NotNull(message = "O atributo Usuário é Obrigatório!")
+	@Email(message = "O atributo Usuário deve ser um email!")
 	private String usuario;
-	
-	@NotNull (message = "O campo senha é obrigatório!")
-	@Size (min = 6, message = "O campo usuario deve conter entre 6 a 50 caracteres.")
+
+	@NotBlank(message = "O atributo Senha é Obrigatória!")
+	@Size(min = 8, message = "A Senha deve ter no mínimo 8 caracteres")
 	private String senha;
 	
-	@OneToMany (mappedBy = "usuario", cascade = CascadeType.REMOVE)
+	@OneToMany(mappedBy = "usuario", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties("usuario")
-	private List <Postagem> postagem;
-	
-	//primeiro método construtor
-	
-	public Usuario (long id, String nome, String usuario, String senha) {
+	private List<Postagem> postagem;
+
+	/**
+	 * Construtor com atributos da Classe Usuario
+	 * 
+	 *  *** Não adicionar o atributo postagem ***
+	 */
+	public Usuario(long id, String nome, String usuario, String senha) {
+		
 		this.id = id;
 		this.nome = nome;
 		this.usuario = usuario;
 		this.senha = senha;
+		
 	}
 
-	// Segundo método Construtor
-
-	public Usuario() {	}
+	/**
+	 * Construtor sem atributos da Classe Usuario
+	 * 
+	 * Será utilizado para gerar Objetos Nulos
+	 */
+	public Usuario() { }
 	
-	// Getters and Setters
+
 	public long getId() {
 		return id;
 	}
@@ -93,6 +100,5 @@ public class Usuario {
 	public void setPostagem(List<Postagem> postagem) {
 		this.postagem = postagem;
 	}
-	
-	
+
 }

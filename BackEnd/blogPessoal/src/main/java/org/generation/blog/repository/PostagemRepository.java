@@ -2,20 +2,14 @@ package org.generation.blog.repository;
 
 import java.util.List;
 
-import org.generation.blog.model.Postagem;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import org.generation.blog.model.Postagem;
 
-//Esta camada é responsável pela comunicação com o bando de dados
 @Repository
-public interface PostagemRepository extends JpaRepository<Postagem, Long> {
-	
-	/*
-	 * Method Query equivalente a instrução SQL
-	 * SELECT * FROM tb_postagem where like %titulo%
-	 * Case = lowerCase ou UpperCase e não CASO
-	 */
-	public List<Postagem> findAllByTituloContainingIgnoreCase (String titulo);
-	
+public interface PostagemRepository extends JpaRepository<Postagem, Long>{
+
+	public List <Postagem> findAllByTituloContainingIgnoreCase(String titulo);
+	// select *  from tb_postagens where titulo like "%titulo%";
 }

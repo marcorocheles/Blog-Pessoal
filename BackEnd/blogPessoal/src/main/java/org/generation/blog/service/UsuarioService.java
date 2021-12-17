@@ -2,19 +2,19 @@ package org.generation.blog.service;
 
 import java.nio.charset.Charset;
 import java.util.Optional;
+
 import org.apache.commons.codec.binary.Base64;
-
-import org.generation.blog.model.UserLogin;
-import org.generation.blog.model.Usuario;
-import org.generation.blog.repository.UsuarioRepository;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import org.generation.blog.model.Usuario;
+import org.generation.blog.model.UserLogin;
+import org.generation.blog.repository.UsuarioRepository;
+
 @Service
 public class UsuarioService {
-	
+
 	@Autowired
 	private UsuarioRepository usuarioRepository;
 	
