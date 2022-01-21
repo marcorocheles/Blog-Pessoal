@@ -30,7 +30,7 @@ public class UsuarioRepositoryTest {
 		
 		usuarioRepository.save(new Usuario(0L, "Manuela da Silva", "manuela@email.com.br", "13465278", "admin", "foto"));
 		
-		usuarioRepository.save(new Usuario(0L, "Adriana da Silva", "adriana@email.com.br", "13465278", "admin", "foto"));
+		usuarioRepository.save(new Usuario(0L, "Adriana da Silva", "adriana@email.com.br", "1827328", "admin", "foto"));
 
         usuarioRepository.save(new Usuario(0L, "Paulo Antunes", "paulo@email.com.br", "13465278", "admin", "foto"));
 
